@@ -1,0 +1,15 @@
+#!groovy
+
+@Library("Infrastructure") _
+
+withInfraPipeline("hmc") {
+   onMaster {
+          enableSlackNotifications('#ccd-master-builds')
+      }
+      onDemo {
+          enableSlackNotifications('#ccd-demo-builds')
+      }
+      onPR {
+          enableSlackNotifications('#ccd-pr-builds')
+      }
+}
