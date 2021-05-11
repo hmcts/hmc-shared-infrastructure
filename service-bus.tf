@@ -26,6 +26,7 @@ module "servicebus-queue-response" {
 
 output "sb_primary_send_and_listen_connection_string" {
   value = module.servicebus-namespace.primary_send_and_listen_connection_string
+  sensitive = true
 }
 
 resource "azurerm_key_vault_secret" "servicebus_primary_connection_string" {
