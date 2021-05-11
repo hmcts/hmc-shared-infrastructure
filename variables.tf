@@ -52,7 +52,7 @@ variable "destroy_me" {
 }
 
 variable "sku" {
-  type = "string"
+  type = string
   default = "Standard"
   description = "SKU type(Basic, Standard and Premium)"
 }
