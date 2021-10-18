@@ -37,7 +37,7 @@ resource "azurerm_key_vault_secret" "servicebus_primary_connection_string" {
 
 module "servicebus-topic" {
   source                = "git@github.com:hmcts/terraform-module-servicebus-topic?ref=master"
-  name                  = "${var.product}-topic-to-cft-${var.env}"
+  name                  = "${var.product}-to-cft-${var.env}"
   namespace_name        = module.servicebus-namespace.name
   resource_group_name   = azurerm_resource_group.rg.name
 }
