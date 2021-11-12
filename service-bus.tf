@@ -34,3 +34,18 @@ resource "azurerm_key_vault_secret" "servicebus_primary_connection_string" {
   value     = module.servicebus-namespace.primary_send_and_listen_connection_string
   key_vault_id = "${module.vault.key_vault_id}"
 }
+
+module "servicebus-topic" {
+  source                = "git@github.com:hmcts/terraform-module-servicebus-topic?ref=master"
+  name                  = "${var.product}-to-cft-${var.env}"
+  namespace_name        = module.servicebus-namespace.name
+  resource_group_name   = azurerm_resource_group.rg.name
+}
+
+module "servicebus-subscription" {
+  source                = "git@github.com:hmcts/terraform-module-servicebus-subscription?ref=master"
+  name                  = "${var.product}-subs-to-cft-${var.env}"
+  namespace_name        = module.servicebus-namespace.name
+  topic_name            = module.servicebus-topic.name
+  resource_group_name   = azurerm_resource_group.rg.name
+}
