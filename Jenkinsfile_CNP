@@ -2,6 +2,8 @@
 
 @Library("Infrastructure") _
 
+def branchesToSync = ['demo', 'ithc', 'perftest']
+
 withInfraPipeline("hmc") {
    onMaster {
           enableSlackNotifications('#ccd-master-builds')
@@ -12,5 +14,5 @@ withInfraPipeline("hmc") {
       onPR {
           enableSlackNotifications('#ccd-pr-builds')
       }
-   
+   syncBranchesWithMaster(branchesToSync)
 }
