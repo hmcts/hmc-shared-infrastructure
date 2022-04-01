@@ -1,12 +1,12 @@
 //SHARED VARIABLES
 variable "product" {
-  type = string
+  type        = string
   description = "The name of your application"
-  default = "hmc"
+  default     = "hmc"
 }
 
 variable "env" {
-  type = string
+  type        = string
   description = "The deployment environment (sandbox, aat, prod etc..)"
 }
 
@@ -15,9 +15,9 @@ variable "subscription" {
 }
 
 variable "location" {
-  type    = string
+  type        = string
   description = "The location where you would like to deploy your infrastructure"
-  default = "UK South"
+  default     = "UK South"
 }
 
 variable "tenant_id" {
@@ -29,14 +29,14 @@ variable "jenkins_AAD_objectId" {
 }
 
 variable "application_type" {
-  type = string
-  default = "web"
+  type        = string
+  default     = "web"
   description = "Type of Application Insights (Web/Other)"
 }
 
 // TAG SPECIFIC VARIABLES
 variable "common_tags" {
-  type = map
+  type = map(any)
 }
 
 variable "team_contact" {
@@ -52,7 +52,9 @@ variable "destroy_me" {
 }
 
 variable "sku" {
-  type = string
-  default = "Standard"
+  type        = string
+  default     = "Standard"
   description = "SKU type(Basic, Standard and Premium)"
 }
+
+variable "aks_subscription_id" {}
