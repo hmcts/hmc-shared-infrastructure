@@ -14,14 +14,14 @@ module "servicebus-namespace" {
 }
 
 module "servicebus-queue-request" {
-  source              = "git@github.com:hmcts/terraform-module-servicebus-queue?ref=master"
+  source              = "git@github.com:hmcts/terraform-module-servicebus-queue?ref=DTSPO-6371_azurerm_upgrade"
   name                = "${var.product}-to-hmi-${var.env}"
   namespace_name      = module.servicebus-namespace.name
   resource_group_name = azurerm_resource_group.rg.name
 }
 
 module "servicebus-queue-response" {
-  source              = "git@github.com:hmcts/terraform-module-servicebus-queue?ref=master"
+  source              = "git@github.com:hmcts/terraform-module-servicebus-queue?ref=DTSPO-6371_azurerm_upgrade"
   name                = "${var.product}-from-hmi-${var.env}"
   namespace_name      = module.servicebus-namespace.name
   resource_group_name = azurerm_resource_group.rg.name
