@@ -3,7 +3,7 @@ module "servicebus-namespace" {
   providers = {
     azurerm.private_endpoint = azurerm.private_endpoint
   }
-  source              = "git@github.com:hmcts/terraform-module-servicebus-namespace?ref=DTSPO-6371_remove_provider"
+  source              = "git@github.com:hmcts/terraform-module-servicebus-namespace?ref=master"
   name                = "${var.product}-servicebus-${var.env}"
   resource_group_name = azurerm_resource_group.rg.name
   location            = var.location
@@ -14,14 +14,14 @@ module "servicebus-namespace" {
 }
 
 module "servicebus-queue-request" {
-  source              = "git@github.com:hmcts/terraform-module-servicebus-queue?ref=DTSPO-6371_azurerm_upgrade"
+  source              = "git@github.com:hmcts/terraform-module-servicebus-queue?ref=master"
   name                = "${var.product}-to-hmi-${var.env}"
   namespace_name      = module.servicebus-namespace.name
   resource_group_name = azurerm_resource_group.rg.name
 }
 
 module "servicebus-queue-response" {
-  source              = "git@github.com:hmcts/terraform-module-servicebus-queue?ref=DTSPO-6371_azurerm_upgrade"
+  source              = "git@github.com:hmcts/terraform-module-servicebus-queue?ref=master"
   name                = "${var.product}-from-hmi-${var.env}"
   namespace_name      = module.servicebus-namespace.name
   resource_group_name = azurerm_resource_group.rg.name
@@ -39,14 +39,14 @@ resource "azurerm_key_vault_secret" "servicebus_primary_connection_string" {
 }
 
 module "servicebus-topic" {
-  source              = "git@github.com:hmcts/terraform-module-servicebus-topic?ref=DTSPO-6371_azurerm_upgrade"
+  source              = "git@github.com:hmcts/terraform-module-servicebus-topic?ref=master"
   name                = "${var.product}-to-cft-${var.env}"
   namespace_name      = module.servicebus-namespace.name
   resource_group_name = azurerm_resource_group.rg.name
 }
 
 module "servicebus-subscription" {
-  source              = "git@github.com:hmcts/terraform-module-servicebus-subscription?ref=DTSPO-6371_azurerm_upgrade"
+  source              = "git@github.com:hmcts/terraform-module-servicebus-subscription?ref=master"
   name                = "${var.product}-subs-to-cft-${var.env}"
   namespace_name      = module.servicebus-namespace.name
   topic_name          = module.servicebus-topic.name
