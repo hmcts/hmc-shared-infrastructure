@@ -18,6 +18,8 @@ module "servicebus-queue-request" {
   name                = "${var.product}-to-hmi-${var.env}"
   namespace_name      = module.servicebus-namespace.name
   resource_group_name = azurerm_resource_group.rg.name
+
+  depends_on = [module.servicebus-namespace]
 }
 
 module "servicebus-queue-response" {
@@ -25,6 +27,8 @@ module "servicebus-queue-response" {
   name                = "${var.product}-from-hmi-${var.env}"
   namespace_name      = module.servicebus-namespace.name
   resource_group_name = azurerm_resource_group.rg.name
+
+  depends_on = [module.servicebus-namespace]
 }
 
 output "sb_primary_send_and_listen_connection_string" {
@@ -43,6 +47,8 @@ module "servicebus-topic" {
   name                = "${var.product}-to-cft-${var.env}"
   namespace_name      = module.servicebus-namespace.name
   resource_group_name = azurerm_resource_group.rg.name
+
+  depends_on = [module.servicebus-namespace]
 }
 
 module "servicebus-subscription" {
