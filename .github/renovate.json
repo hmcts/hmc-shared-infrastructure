@@ -1,0 +1,8 @@
+{
+  "labels": [
+    "dependencies"
+  ],
+  "extends": [
+    "local>hmcts/.github:renovate-config"
+  ]
+}
