@@ -3,7 +3,7 @@ module "servicebus-namespace" {
   providers = {
     azurerm.private_endpoint = azurerm.private_endpoint
   }
-  source              = "git@github.com:hmcts/terraform-module-servicebus-namespace?ref=master"
+  source              = "git@github.com:hmcts/terraform-module-servicebus-namespace?ref=4.x"
   name                = "${var.product}-servicebus-${var.env}"
   resource_group_name = azurerm_resource_group.rg.name
   location            = var.location
@@ -14,7 +14,7 @@ module "servicebus-namespace" {
 }
 
 module "servicebus-queue-request" {
-  source              = "git@github.com:hmcts/terraform-module-servicebus-queue?ref=master"
+  source              = "git@github.com:hmcts/terraform-module-servicebus-queue?ref=4.x"
   name                = "${var.product}-to-hmi-${var.env}"
   namespace_name      = module.servicebus-namespace.name
   resource_group_name = azurerm_resource_group.rg.name
@@ -23,7 +23,7 @@ module "servicebus-queue-request" {
 }
 
 module "servicebus-queue-response" {
-  source              = "git@github.com:hmcts/terraform-module-servicebus-queue?ref=master"
+  source              = "git@github.com:hmcts/terraform-module-servicebus-queue?ref=4.x"
   name                = "${var.product}-from-hmi-${var.env}"
   namespace_name      = module.servicebus-namespace.name
   resource_group_name = azurerm_resource_group.rg.name
@@ -54,7 +54,7 @@ resource "azurerm_key_vault_secret" "servicebus_primary_shared_access_key" {
 }
 
 module "servicebus-topic" {
-  source              = "git@github.com:hmcts/terraform-module-servicebus-topic?ref=master"
+  source              = "git@github.com:hmcts/terraform-module-servicebus-topic?ref=4.x"
   name                = "${var.product}-to-cft-${var.env}"
   namespace_name      = module.servicebus-namespace.name
   resource_group_name = azurerm_resource_group.rg.name
@@ -63,7 +63,7 @@ module "servicebus-topic" {
 }
 
 module "servicebus-subscription" {
-  source              = "git@github.com:hmcts/terraform-module-servicebus-subscription?ref=master"
+  source              = "git@github.com:hmcts/terraform-module-servicebus-subscription?ref=4.x"
   name                = "${var.product}-subs-to-cft-${var.env}"
   namespace_name      = module.servicebus-namespace.name
   topic_name          = module.servicebus-topic.name
