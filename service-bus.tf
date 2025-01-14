@@ -15,7 +15,7 @@ module "servicebus-namespace" {
 module "servicebus-queue-request" {
   source              = "git@github.com:hmcts/terraform-module-servicebus-queue?ref=4.x"
   name                = "${var.product}-to-hmi-${var.env}"
-  namespace_id      = module.servicebus-namespace.name
+  namespace_name      = module.servicebus-namespace.name
   resource_group_name = azurerm_resource_group.rg.name
 
   depends_on = [module.servicebus-namespace]
