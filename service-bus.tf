@@ -63,7 +63,7 @@ module "servicebus-topic" {
 module "servicebus-subscription" {
   source       = "git@github.com:hmcts/terraform-module-servicebus-subscription?ref=4.x"
   name         = "${var.product}-subs-to-cft-${var.env}"
-  namespace_id = module.servicebus-namespace.name
+  namespace_name = module.servicebus-namespace.name
   topic_name   = module.servicebus-topic.name
 
   depends_on = [module.servicebus-topic]
