@@ -15,7 +15,7 @@ module "servicebus-namespace" {
 module "servicebus-queue-request" {
   source              = "git@github.com:hmcts/terraform-module-servicebus-queue?ref=4.x"
   name                = "${var.product}-to-hmi-${var.env}"
-  namespace_name      = module.servicebus-namespace.name
+  namespace_id      = module.servicebus-namespace.name
   resource_group_name = azurerm_resource_group.rg.name
 
   depends_on = [module.servicebus-namespace]
@@ -24,7 +24,7 @@ module "servicebus-queue-request" {
 module "servicebus-queue-response" {
   source              = "git@github.com:hmcts/terraform-module-servicebus-queue?ref=4.x"
   name                = "${var.product}-from-hmi-${var.env}"
-  namespace_name      = module.servicebus-namespace.name
+  namespace_id      = module.servicebus-namespace.name
   resource_group_name = azurerm_resource_group.rg.name
 
   depends_on = [module.servicebus-namespace]
@@ -55,7 +55,7 @@ resource "azurerm_key_vault_secret" "servicebus_primary_shared_access_key" {
 module "servicebus-topic" {
   source              = "git@github.com:hmcts/terraform-module-servicebus-topic?ref=4.x"
   name                = "${var.product}-to-cft-${var.env}"
-  namespace_name      = module.servicebus-namespace.name
+  namespace_id      = module.servicebus-namespace.name
   resource_group_name = azurerm_resource_group.rg.name
 
   depends_on = [module.servicebus-namespace]
@@ -64,7 +64,7 @@ module "servicebus-topic" {
 module "servicebus-subscription" {
   source              = "git@github.com:hmcts/terraform-module-servicebus-subscription?ref=4.x"
   name                = "${var.product}-subs-to-cft-${var.env}"
-  namespace_name      = module.servicebus-namespace.name
+  namespace_id      = module.servicebus-namespace.name
   topic_name          = module.servicebus-topic.name
   resource_group_name = azurerm_resource_group.rg.name
 
