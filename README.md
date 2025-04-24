@@ -12,6 +12,7 @@ This module sets up the shared infrastructure for HMC.
 - `product` (optional) The (short) name of the product. Default is "hmc".
 - `location` (optional) The location of the Azure data center. Default is "UK South".
 
+
 ### Output
 
 - `vaultName` The name of the key vault.
