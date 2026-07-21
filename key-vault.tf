@@ -10,6 +10,7 @@ module "vault" {
   common_tags             = local.tags
   create_managed_identity = true
   jenkins_object_id       = data.azurerm_user_assigned_identity.jenkins.principal_id
+  grant_preview_jenkins_access = var.env == "aat"
 }
 
 data "azurerm_user_assigned_identity" "jenkins" {
